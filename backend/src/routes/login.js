@@ -11,12 +11,12 @@ const login = (req, res )=>{
   getUser(cpf)
   .then( (result)=>{
     if(result.length != 0){
-      const {cpf, linkImg} = result[0]
-      if(linkImg == password){
+      const {cpf, userPassword, urls} = result[0]
+      if(userPassword == password){
   
         var token = jwt.sign({cpf}, '12345',{expiresIn:1200});
-  
-        res.status(200).json({token})
+        
+        res.status(200).json({token,urls})
       }else{
         res.status(401).json("senha incorreta")
       }
