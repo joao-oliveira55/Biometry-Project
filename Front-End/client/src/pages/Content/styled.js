@@ -1,8 +1,8 @@
 import styled from "styled-components"
 
-export const header = styled.header`    
-    margin-bottom: 100px;
-    
+export const header = styled.header`
+    margin-bottom: 50px;
+
     #header-menu{
         background-color: #fff;
         display: flex;
@@ -67,55 +67,47 @@ export const header = styled.header`
 `
 
 export const main = styled.main`
-    #saudacoes h2{    
-        margin: 60px auto 0;
-        width: 80%;
-        text-transform: uppercase;
-        color: #1351b4;
-    }
-    #saudacoes h2 i{
-        color: #000;
-    }
-
-    .sub-menu{    
-        background-color: #f2f2f2;
-        width: 80%;
-        height: 400px;
-        margin: 2px auto 100px;
-        display: grid;
-        grid-template-rows: repeat(2, 1fr);
-        grid-template-columns: repeat(3, 1fr);
-    }
-    .sub-menu .sub-menu-item a{
-        width: 100%;
-        height: 100%;
+    .cabecalho{
+        background-color: #1351b4;
+        box-shadow: 0px 5px 20px 5px #4b4949;
+        height: 80px;
+        margin-bottom: 50px;
         display: flex;
         align-items: center;
         justify-content: center;
     }
-    .sub-menu .sub-menu-item a button{
-        background-color: #fff;
-        color: #1351b4;
-        border:1px solid #1351b4;
-        width: 90%;
-        height: 80%;
-        text-transform: uppercase;
-        font-size: 25px;
-    }
-    .sub-menu .sub-menu-item a button:hover{
-        background-color: #1351b4;
+    .cabecalho h2{
         color: #fff;
+        text-transform: uppercase;    
     }
-`
 
-export const footer = styled.footer`    
-    width: 80%;
-    margin: 0 auto;
-    
-    footer .banner{
-        height: calc(100%*(346/1109));
+    section{    
+        width: 80%;
+        margin: 0 auto;
+        padding: 20px;
     }
-    footer .banner img{
+    .info-group{
+        background-color: #f2f2f2;
+        box-shadow: 0px 0px 20px 5px #1351b4;
+        display: flex;
+        align-items: center;
+        height: 180px;
+        overflow: hidden;
+    }
+
+    .info-image img{
         width: 100%;
+    }
+    .info-content{
+        height: 150px;
+        width: 50%;
+        margin-left: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;    
+    }
+    .info-content h2{
+        color: #1351b4;
+        text-transform: uppercase;
     }
 `
