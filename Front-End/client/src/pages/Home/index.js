@@ -25,7 +25,7 @@ export default function Home() {
     
     return (
       <>
-        <header>
+        <S.header>
             <div id="header-menu">
                 <div id="first">
                     <div class="logo">
@@ -53,8 +53,8 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-        </header>
-        <main>
+        </S.header>
+        <S.main>
             <div id="saudacoes">
                 <h2>bem vindo <i>*fulano*</i></h2>
             </div>
@@ -90,14 +90,12 @@ export default function Home() {
                     </a>
                 </div>
             </div>
-        </main>
-        <footer>
+        </S.main>
+        <S.footer>
             <div class="banner">
                 <img src="../img/banner.jpeg" alt=""/>
             </div>
-        </footer>
-
- 
+        </S.footer> 
       </>
     );
   }
