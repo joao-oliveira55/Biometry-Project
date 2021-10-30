@@ -1,4 +1,5 @@
 import React, {useState,useEffect} from "react";
+import { useHistory } from "react-router-dom";
 import * as S from './styled'
 
 const axios = require('axios');
@@ -7,7 +8,7 @@ export default function Content(){
     const [ title, setTitle ] = useState("")
     const [ content, setContent ] = useState([])
     const token = localStorage.getItem('token')
-
+    const history = useHistory()
     let url = document.URL
     url = url.replace("http://localhost:3000/content/","")
 
@@ -15,7 +16,6 @@ export default function Content(){
         const config = {
             headers: { Authorization: `Bearer ${token}` }
           };
-          
         axios.get(
         `http://localhost:3003/post/${url}`,
         config
@@ -28,7 +28,8 @@ export default function Content(){
             
         })
         .catch(function (error) {
-            // handle error
+            alert("Sua sessão foi expirada ou você não tem acesso. Faça o login novamente!")
+            history.push("/");
             console.log(error);
         })
            

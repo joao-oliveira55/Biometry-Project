@@ -14,21 +14,30 @@ const client = new MongoClient(MONGO_CNSTRING);
 const dbName = 'BD_MinisterioAmbiente';
 
 const getInfor = async (cpf) => {
-  
+  let data = []
+  let infoBanco = []
   // Use connect method to connect to the server
   await client.connect();
   const BDteste = client.db(dbName);
   const collectionCliente = BDteste.collection('users');
   const userbanco = await collectionCliente.find({cpf:cpf}).toArray();
-  
-  const access = userbanco[0].access
+  data.push(userbanco[0])
 
+  let access = parseInt(userbanco[0].access) 
   const BDinforma = client.db(dbName);
-  const collectionInfor = BDinforma.collection(`Information${access}`);
-  const findResult = await collectionInfor.find({}).toArray();
 
-  const data =[userbanco[0].user,findResult]
+  while (access != 0 ) {
+
+    let collectionInfor = BDinforma.collection(`Information${access}`);
+    let findResult = await collectionInfor.find({}).toArray();
+
+    for(let res of findResult){
+      infoBanco.push(res)
+    }
+    access -= 1
+  }
   
+  data.push(infoBanco)
   // the following code examples can be pasted here...
   console.log(data)
   return data ; 

@@ -1,4 +1,5 @@
 import React, {useState,useEffect} from "react";
+import { useHistory } from "react-router-dom";
 import * as S from './styled'
 
 const axios = require('axios');
@@ -6,11 +7,11 @@ const axios = require('axios');
 export default function Home() {
     const [ information, setInformation ] = useState([])
     const [ user, setUser ] = useState("")
-
     const token = localStorage.getItem('token')
+    const history = useHistory()
 
     useEffect(() => {
-    
+        
         const config = {
             headers: { Authorization: `Bearer ${token}` }
             };
@@ -20,16 +21,17 @@ export default function Home() {
         config
         )
         .then(function (response) {
-            console.log(response)
-            setUser(response.data[0])
-            setInformation(response.data[1])   
+            
+            setUser(response.data[0].user)
+            setInformation(response.data[1])  
+            
         })
         .catch(function (error) {
-            // handle error
+            alert("Sua sessão foi expirada ou você não tem acesso. Faça o login novamente!")
+            history.push("/");
             console.log(error);
         })
 
-           
     },[])
     
     return (

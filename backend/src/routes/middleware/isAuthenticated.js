@@ -4,6 +4,7 @@ const isAuthenticated = (req,res,next) =>{
   try{
     
     const token = req.headers.authorization.replace("Bearer ","")
+    console.log(token)
     const validToken = jwt.verify(token,"12345")
     req['tokenData'] = validToken
 

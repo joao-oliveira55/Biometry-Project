@@ -20,7 +20,7 @@ export default function Home() {
     function handleLogin (e){
       e.preventDefault();
 
-      axios.post('http://localhost:3001/login', {
+      axios.post('http://localhost:3003/login', {
         cpf: cpf,
         password: senha
       })
@@ -126,7 +126,6 @@ export default function Home() {
           }
           
         }
-        
     
         // Pega o input file e transforma em imagem
         inputElement.addEventListener('change', (e) => {
