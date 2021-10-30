@@ -26,10 +26,12 @@ const getInfor = async (cpf) => {
   const BDinforma = client.db(dbName);
   const collectionInfor = BDinforma.collection(`Information${access}`);
   const findResult = await collectionInfor.find({}).toArray();
+
+  const data =[userbanco[0].user,findResult]
   
   // the following code examples can be pasted here...
-  console.log(findResult)
-  return findResult ; 
+  console.log(data)
+  return data ; 
 
 }
 

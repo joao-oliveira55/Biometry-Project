@@ -9,6 +9,6 @@ routes.post("/login", login )
 
 routes.get("/home", isAuthenticated, home )
 
-routes.get("/post", isAuthenticated, posts )
+routes.get("/post/:title", isAuthenticated, posts )
 
 module.exports = routes

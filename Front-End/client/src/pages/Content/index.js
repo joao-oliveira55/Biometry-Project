@@ -1,8 +1,38 @@
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
 import * as S from './styled'
-import { useHistory } from "react-router-dom";
+
+const axios = require('axios');
 
 export default function Content(){
+    const [ title, setTitle ] = useState("")
+    const [ content, setContent ] = useState([])
+    const token = localStorage.getItem('token')
+
+    let url = document.URL
+    url = url.replace("http://localhost:3000/content/","")
+
+    useEffect(() => {
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+          };
+          
+        axios.get(
+        `http://localhost:3003/post/${url}`,
+        config
+        )
+        .then(function (response) {
+            setTitle(response.data[0].title_post)   
+            setContent(response.data[0].content_post)
+
+            console.log(content)
+            
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
+           
+    },[])
 
     return (
         <>
@@ -37,30 +67,27 @@ export default function Content(){
             </S.header>
             <S.main>
                 <div class="cabecalho">
-                    <h2>Gerenciar conta</h2>
+                    <h2>{title}</h2>
                 </div>
-                <section class="info-1">
-                    <div class="info-group">
-                        <div class="info-image">
-                            <img src="/img/cenoura.jfif" alt=""/>
-                        </div>
-                        <div class="info-content">
-                            <h2>Lorem ipsum dolor</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec erat purus, sagittis vitae augue id, malesuada malesuada sapien. Proin eget dictum nisl. Nulla congue ipsum eget aliquet varius. In nunc enim, mattis vel dui vel, laoreet tempus arcu.</p>
-                        </div>
-                    </div>
-                </section>
-                <section class="info-2">
-                    <div class="info-group">
-                        <div class="info-image">
-                            <img src="/img/cenoura.jfif" alt=""/>
-                        </div>
-                        <div class="info-content">
-                            <h2>Lorem ipsum dolor</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec erat purus, sagittis vitae augue id, malesuada malesuada sapien. Proin eget dictum nisl. Nulla congue ipsum eget aliquet varius. In nunc enim, mattis vel dui vel, laoreet tempus arcu.</p>
-                        </div>
-                    </div>
-                </section>
+                {
+                   content.map( cont =>{
+                    return(
+                        <section class="info-1">
+                            <div class="info-group">
+                                <div class="info-image">
+                                    <img src="/img/cenoura.jfif" alt=""/>
+                                </div>
+                                <div class="info-content">
+                                    <h2>{cont.title}</h2>
+                                    <p>{cont.content}</p>
+                                </div>
+                            </div>
+                        </section>
+                    )
+                }) 
+                }
+                
+                
             </S.main>
         </>
     )

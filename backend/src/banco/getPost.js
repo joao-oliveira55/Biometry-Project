@@ -11,26 +11,20 @@ const { MongoClient, Collection } = require('mongodb');
 const client = new MongoClient(MONGO_CNSTRING);
 
 // Database Name
-const dbName = 'teste';
+const dbName = 'BD_MinisterioAmbiente';
 
-const getInfor = async (id) => {
+const getPost = async (title) => {
   
   // Use connect method to connect to the server
   await client.connect();
   console.log('Connected successfully to server');
-  const BDteste = client.db('teste');
-  const collectionCliente = BDteste.collection('teste_collection');
-  const userbanco = await collectionCliente.find({ _id:id }).toArray();
+  const BDteste = client.db(dbName);
+  const collectionCliente = BDteste.collection('Posts');
+  const Posts = await collectionCliente.find({ title_post:title }).toArray();
 
-  const BDinforma = client.db('teste');
-  const collectionInfor = BDinforma.collection('informacoes1');
-  const findResult = await collectionInfor.find({}).toArray();
-  
-  // the following code examples can be pasted here...
-
-  return findResult ; 
+  return Posts ; 
 
 }
 
-module.exports = getInfor
+module.exports = getPost
 
