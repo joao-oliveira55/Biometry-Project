@@ -1,31 +1,40 @@
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
 import * as S from './styled'
 
 const axios = require('axios');
 
 export default function Home() {
+    const [ information, setInformation ] = useState([])
+    const [ user, setUser ] = useState("")
 
     const token = localStorage.getItem('token')
 
-    const config = {
-      headers: { Authorization: `Bearer ${token}` }
-    };
-    axios.get(
-      'http://localhost:3001/home',
-      config
-    )
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-    })
+    useEffect(() => {
+    
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+            };
+            
+        axios.get(
+        'http://localhost:3003/home',
+        config
+        )
+        .then(function (response) {
+            console.log(response)
+            setUser(response.data[0])
+            setInformation(response.data[1])   
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
 
+           
+    },[])
     
     return (
       <>
-        <header>
+        <S.header>
             <div id="header-menu">
                 <div id="first">
                     <div class="logo">
@@ -44,7 +53,7 @@ export default function Home() {
                 <div id="second">
                     <div id="dados-cliente">
                         <img src="../img/usuario.png" alt=""/>
-                        <p>Gabriel Collo</p>
+                        <p>{user}</p>
                     </div>
                     <div id="btn-logout">
                         <button>
@@ -53,51 +62,31 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-        </header>
-        <main>
+        </S.header>
+        <S.main>
             <div id="saudacoes">
-                <h2>bem vindo <i>*fulano*</i></h2>
+                <h2>bem vindo <i>{user}</i></h2>
             </div>
+            
             <div class="sub-menu">                
-                <div class="sub-menu-item">
-                    <a href="/conteudo1/conteudo1.html">
-                        <button>Gerenciar conta</button>
-                    </a>
-                </div>
-                <div class="sub-menu-item">
-                    <a href="/conteudo2/conteudo2.html">
-                        <button>Informações sobre agrotóxicos</button>
-                    </a>
-                </div>
-                <div class="sub-menu-item">
-                    <a href="/conteudo3/conteudo3.html">
-                        <button>Documentos de proprietários</button>
-                    </a>
-                </div>
-                <div class="sub-menu-item">
-                    <a href="/conteudo4/conteudo4.html">
-                        <button>Ocorrências</button>
-                    </a>
-                </div>
-                <div class="sub-menu-item">
-                    <a href="/conteudo5/conteudo5.html">
-                        <button>Propriedades registradas</button>
-                    </a>
-                </div>
-                <div class="sub-menu-item">
-                    <a href="/conteudo6/conteudo6.html">
-                        <button>Gerenciar usuários</button>
-                    </a>
-                </div>
+                {
+                    information.map( product =>{
+                        return(
+                            <div class="sub-menu-item">
+                                <a href={ product.link}>
+                                    <button>{product.title}</button>
+                                </a>
+                            </div>
+                        )
+                    })
+                }
             </div>
-        </main>
-        <footer>
+        </S.main>
+        <S.footer>
             <div class="banner">
                 <img src="../img/banner.jpeg" alt=""/>
             </div>
-        </footer>
-
- 
+        </S.footer>
       </>
     );
   }
