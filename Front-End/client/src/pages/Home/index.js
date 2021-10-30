@@ -86,6 +86,7 @@ export default function Home() {
             <div class="banner">
                 <img src="../img/banner.jpeg" alt=""/>
             </div>
+
         </S.footer>
       </>
     );
