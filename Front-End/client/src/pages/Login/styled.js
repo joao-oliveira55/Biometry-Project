@@ -11,8 +11,37 @@ export const main = styled.main`
 export const login = styled.section`
     margin-left: 50px;
     box-shadow: 0 2px 4px #00000033;
-    height: 61vh;
     padding: 20px;
+
+    input[type="file"] {
+        display:none;
+
+        &.biometria {
+            display:block;
+            margin: 10px;
+        }
+    }
+
+    input[value="Voltar"] {
+        border: none;
+        box-shadow: 0 2px 3px #00000029;
+        border-radius: 24px;
+        font-size: 1em;
+        font-weight: bold;
+        color: #FFFFFF;
+        cursor: pointer;
+        background: #1351B4 0 0 no-repeat padding-box;
+        width: 150px;
+        height: 40px;
+        margin: 0 auto;
+    }
+
+    span {
+        display: flex;
+        justify-content: center;
+        font-size: 1.2rem;
+        margin: 4% 0;
+    }
 
     h1,h2{
         font-family: 'Quicksand', sans-serif;
@@ -31,7 +60,20 @@ export const login = styled.section`
     div{
         display: flex;
         margin: 20px 0;
+        flex-direction: column;
     
+        &.biometria {
+            display:none;
+        }
+    }
+    div#biometriaDiv{
+        display:none;
+    
+        &.biometria {
+            display: flex;
+            margin: 20px 0;
+            flex-direction: column;
+        }
     }
 
     p{
@@ -54,6 +96,10 @@ export const form = styled.form`
     display: flex;
     flex-direction: column;
     margin-top: 30px;
+
+    &.biometria {
+        display:none;
+    }
 
     label{
         font-size: 18px;
