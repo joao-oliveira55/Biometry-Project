@@ -39,7 +39,6 @@ const getInfor = async (cpf) => {
   
   data.push(infoBanco)
   // the following code examples can be pasted here...
-  console.log(data)
   return data ; 
 
 }

@@ -10,6 +10,7 @@ export default function Home() {
     const [ messageForm, setMessageForm ] = useState('')
     const [ veBiometria, setVeBiometria ] = useState('')
     const history = useHistory()
+    const token = localStorage.getItem('token')
 
     function handleVoltar(e) {
       localStorage.setItem('token', '')

@@ -2,15 +2,21 @@ import React, {useState,useEffect} from "react";
 import { useHistory } from "react-router-dom";
 import * as S from './styled'
 
+import Header from "../../Components/Header"
+import Footer from "../../Components/Footer"
+
 const axios = require('axios');
 
-export default function Content(){
+export default function Posts(){
     const [ title, setTitle ] = useState("")
+    const [ user, setUser] = useState("")
     const [ content, setContent ] = useState([])
+    
     const token = localStorage.getItem('token')
     const history = useHistory()
+
     let url = document.URL
-    url = url.replace("http://localhost:3000/content/","")
+    url = url.replace("http://localhost:3000/posts/","")
 
     useEffect(() => {
         const config = {
@@ -21,11 +27,10 @@ export default function Content(){
         config
         )
         .then(function (response) {
-            setTitle(response.data[0].title_post)   
-            setContent(response.data[0].content_post)
-
-            console.log(content)
-            
+            setTitle(response.data[1][0].title_post)   
+            setContent(response.data[1][0].content_post)
+            setUser(response.data[0][0].user)
+            console.log(response)
         })
         .catch(function (error) {
             alert("Sua sessão foi expirada ou você não tem acesso. Faça o login novamente!")
@@ -37,35 +42,8 @@ export default function Content(){
 
     return (
         <>
-            <S.header>
-                <div id="header-menu">
-                    <div id="first">
-                        <div class="logo">
-                            <a href="/home/home.html">
-                                <img src="../img/logo.png" alt=""/>
-                            </a>
-                        </div>
-                        <div id="btn-menu">
-                            <div id="lines">
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="second">
-                        <div id="dados-cliente">
-                            <img src="../img/usuario.png" alt=""/>
-                            <p>Gabriel Collo</p>
-                        </div>
-                        <div id="btn-logout">
-                            <button>
-                                <img src="../img/logout.png" alt=""/>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </S.header>
+            <Header userName={user}/>
+
             <S.main>
                 <div class="cabecalho">
                     <h2>{title}</h2>
@@ -87,9 +65,9 @@ export default function Content(){
                     )
                 }) 
                 }
-                
-                
             </S.main>
+
+            <Footer/>
         </>
     )
 }

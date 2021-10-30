@@ -5,15 +5,12 @@ const home = (req, res )=>{
   
   const {cpf} = req['tokenData']
 
-  console.log(req['tokenData'])
-
   getInfor(cpf)
     .then( (result)=>{
       res.status(200).send(JSON.stringify(result))
     })
     .catch(
       console.error
-      
     )
   // enviar resposta do banco
   

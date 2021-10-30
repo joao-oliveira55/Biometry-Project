@@ -2,6 +2,9 @@ import React, {useState,useEffect} from "react";
 import { useHistory } from "react-router-dom";
 import * as S from './styled'
 
+import Header from "../../Components/Header"
+import Footer from "../../Components/Footer"
+
 const axios = require('axios');
 
 export default function Home() {
@@ -36,35 +39,8 @@ export default function Home() {
     
     return (
       <>
-        <S.header>
-            <div id="header-menu">
-                <div id="first">
-                    <div class="logo">
-                        <a href="/home/home.html">
-                            <img src="../img/logo.png" alt=""/>
-                        </a>
-                    </div>
-                    <div id="btn-menu">
-                        <div id="lines">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                        </div>
-                    </div>
-                </div>
-                <div id="second">
-                    <div id="dados-cliente">
-                        <img src="../img/usuario.png" alt=""/>
-                        <p>{user}</p>
-                    </div>
-                    <div id="btn-logout">
-                        <button>
-                            <img src="../img/logout.png" alt=""/>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </S.header>
+        <Header userName={user}/>
+        
         <S.main>
             <div id="saudacoes">
                 <h2>bem vindo <i>{user}</i></h2>
@@ -84,12 +60,8 @@ export default function Home() {
                 }
             </div>
         </S.main>
-        <S.footer>
-            <div class="banner">
-                <img src="../img/banner.jpeg" alt=""/>
-            </div>
 
-        </S.footer>
+        <Footer/>
       </>
     );
   }
