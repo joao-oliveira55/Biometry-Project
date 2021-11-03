@@ -7,6 +7,8 @@ export default function Header(props) {
 
     function logOff(){
         localStorage.setItem('token', '')
+        localStorage.setItem('urls', '')
+        localStorage.setItem('dados', '')
         history.push("/");
         console.log('logOFF')
     }

@@ -15,6 +15,8 @@ export default function Home() {
     function handleVoltar(e) {
       localStorage.setItem('token', '')
       localStorage.setItem('urls', '')
+      localStorage.setItem('dados', '')
+      
       setVeBiometria('')
     }
     
@@ -27,7 +29,8 @@ export default function Home() {
       })
       .then(function (response) {
         console.log(response)
-        localStorage.setItem('token', response.data.token)
+        
+        localStorage.setItem('dados', JSON.stringify(response.data))
         localStorage.setItem('urls', JSON.stringify(response.data.urls))
         
         setVeBiometria('biometria')
@@ -121,6 +124,8 @@ export default function Home() {
           } else {
             setMessageForm('Acesso Concedido!')
             contador = 0
+            var token = JSON.parse(localStorage.getItem('dados'))
+            localStorage.setItem('token', token.token)
             setTimeout(() => {
               history.push("/home");
             }, 2500);
