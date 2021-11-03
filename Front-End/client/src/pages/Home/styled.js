@@ -14,7 +14,6 @@ export const main = styled.main`
     .sub-menu{    
         background-color: #f2f2f2;
         width: 80%;
-        height: 400px;
         margin: 2px auto 100px;
         display: grid;
         grid-template-rows: repeat(2, 1fr);
@@ -22,7 +21,7 @@ export const main = styled.main`
     }
     .sub-menu .sub-menu-item a{
         width: 100%;
-        height: 100%;
+        height: 200px;
         display: flex;
         align-items: center;
         justify-content: center;

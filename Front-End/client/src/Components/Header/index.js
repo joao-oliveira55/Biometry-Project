@@ -22,13 +22,6 @@ export default function Header(props) {
                             <img src="/image/logo.png" alt=""/>
                         </a>
                     </div>
-                    <div id="btn-menu">
-                        <div id="lines">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                        </div>
-                    </div>
                 </div>
                 <div id="second">
                     <div id="dados-cliente">

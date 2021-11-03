@@ -25,7 +25,6 @@ export const main = styled.main`
         box-shadow: 0px 0px 20px 5px #1351b4;
         display: flex;
         align-items: center;
-        height: 180px;
         overflow: hidden;
     }
 
@@ -33,7 +32,6 @@ export const main = styled.main`
         width: 100%;
     }
     .info-content{
-        height: 150px;
         width: 50%;
         margin-left: 30px;
         display: flex;
